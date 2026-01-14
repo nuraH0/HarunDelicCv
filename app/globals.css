@@ -1,0 +1,96 @@
+/* 1️⃣ Google Fonts import mora biti na vrhu */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+/* 2️⃣ Tailwind import odmah nakon fontova */
+@import "tailwindcss";
+
+/* 3️⃣ Definicije boja i fontova */
+:root {
+  /* Boje */
+  --color-bg-dark: #0f172a;
+  --color-bg-light: #1e3a8a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cbd5e1;
+  --color-accent: #3b82f6;
+  --color-accent-alt: #38bdf8;
+
+  /* Fontovi */
+  --font-sans: 'Inter', Arial, sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+/* 4️⃣ Premium font za ime */
+/* Hero sekcija */
+.name-logo {
+  font-family: 'Sacramento', cursive;
+  font-size: 4rem; /* ostaje velika za hero */
+  color: var(--color-accent-alt);      
+  background: linear-gradient(90deg, #38bdf8, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(56,189,248,0.3);
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+/* Navigacija - manja verzija */
+.nav-logo {
+  font-family: 'Sacramento', cursive;
+  font-size: 1.5rem; /* duplo manja */
+  color: var(--color-accent-alt);      
+  background: linear-gradient(90deg, #38bdf8, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(56,189,248,0.2);
+  letter-spacing: 0.3px;
+  display: inline-block;
+}
+
+
+/* 5️⃣ Osnovni body stilovi */
+body {
+  background: var(--color-bg-dark);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+}
+
+/* Animacije */
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.2); opacity: 0.4; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+/* Responsive tweaks */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-dark: #0f172a;
+    --color-bg-light: #1e3a8a;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #cbd5e1;
+    --color-accent: #3b82f6;
+    --color-accent-alt: #38bdf8;
+  }
+}
