@@ -396,49 +396,51 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Language toggle */}
-      {isLoaded && (
-        <div className="fixed top-4 right-4 z-[70] px-4 pt-4 flex items-start gap-2">
-          <div
-            className="w-28 h-14 sm:w-32 sm:h-16 bg-gray-900/95 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 shadow-2xl shadow-black/70 border-2 sm:border-4 border-white/30 backdrop-blur-2xl relative overflow-hidden group hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-400 hover:scale-105 cursor-pointer select-none touch-manipulation"
-            onClick={toggleLanguage}
-          >
-            <motion.div
-              className="absolute top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl sm:rounded-3xl shadow-2xl sm:shadow-3xl shadow-gray-500/70 backdrop-blur-2xl border-2 sm:border-4 flex items-center justify-center drop-shadow-2xl ring-2 sm:ring-4 ring-white/40 z-10"
-              layout
-              animate={{
-                left: language === 'bs' ? '2px' : 'calc(100% - 50px)',
-                background:
-                  language === 'bs'
-                    ? 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)'
-                    : 'linear-gradient(135deg, #fde68a 0%, #eab308 100%)',
-                borderColor: language === 'bs' ? '#1d4ed8' : '#d97706',
-                boxShadow:
-                  language === 'bs'
-                    ? '0 0 40px rgba(59,130,246,0.9), inset 0 0 20px rgba(255,255,255,0.5)'
-                    : '0 0 40px rgba(234,179,8,0.9), inset 0 0 20px rgba(255,255,255,0.5)',
-              }}
-              transition={{ type: 'spring', stiffness: 700, damping: 28 }}
-              whileHover={{ scale: 1.1 }}
-              style={{ cursor: 'pointer' }}
-            >
-              <img
-                src={language === 'bs' ? '/bosna.png' : '/engleska.png'}
-                alt={language === 'bs' ? 'Bosanski' : 'English'}
-                className={`w-6 h-4 sm:w-8 sm:h-5 rounded-lg shadow-md overflow-hidden border object-cover ${
-                  language === 'bs' ? 'border-blue-400/70' : 'border-yellow-400/70'
-                }`}
-                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src =
-                    language === 'bs'
-                      ? 'https://flagcdn.com/24x18/ba.png'
-                      : 'https://flagcdn.com/24x18/gb.png';
-                }}
-              />
-            </motion.div>
-          </div>
-        </div>
-      )}
+   {/* Language toggle - FIKSIRANO */}
+{isLoaded && (
+  <div className="fixed top-4 right-4 z-[70] px-4 pt-4 flex items-start gap-2">
+    <div
+      className="w-28 h-14 sm:w-32 sm:h-16 bg-gray-900/95 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 shadow-2xl shadow-black/70 border-2 sm:border-4 border-white/30 backdrop-blur-2xl relative overflow-hidden group hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-400 hover:scale-105 cursor-pointer select-none touch-manipulation"
+      onClick={toggleLanguage}
+    >
+      <motion.div
+        className="absolute top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl sm:rounded-3xl shadow-2xl sm:shadow-3xl shadow-gray-500/70 backdrop-blur-2xl border-2 sm:border-4 flex items-center justify-center drop-shadow-2xl ring-2 sm:ring-4 ring-white/40 z-10"
+        // **UKLONJENO: layout ** 
+        animate={{
+          x: language === 'bs' ? 0 : 'calc(100% - 50px)', // **KORISTI X UMJESTO LEFT**
+          background:
+            language === 'bs'
+              ? 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)'
+              : 'linear-gradient(135deg, #fde68a 0%, #eab308 100%)',
+          borderColor: language === 'bs' ? '#1d4ed8' : '#d97706',
+          boxShadow:
+            language === 'bs'
+              ? '0 0 40px rgba(59,130,246,0.9), inset 0 0 20px rgba(255,255,255,0.5)'
+              : '0 0 40px rgba(234,179,8,0.9), inset 0 0 20px rgba(255,255,255,0.5)',
+        }}
+        transition={{ type: 'spring', stiffness: 700, damping: 28 }}
+        whileHover={{ scale: 1.1 }}
+        style={{ cursor: 'pointer' }}
+      >
+        <img
+          src={language === 'bs' ? '/bosna.png' : '/engleska.png'}
+          alt={language === 'bs' ? 'Bosanski' : 'English'}
+          className={`w-6 h-4 sm:w-8 sm:h-5 rounded-lg shadow-md overflow-hidden border object-cover ${
+            language === 'bs' ? 'border-blue-400/70' : 'border-yellow-400/70'
+          }`}
+          onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+            const target = e.target as HTMLImageElement;
+            target.src =
+              language === 'bs'
+                ? 'https://flagcdn.com/24x18/ba.png'
+                : 'https://flagcdn.com/24x18/gb.png';
+          }}
+        />
+      </motion.div>
+    </div>
+  </div>
+)}
+
 
       {/* FULLSCREEN Canvas */}
       <div className={`absolute inset-0 w-full h-screen z-0 pointer-events-none ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
