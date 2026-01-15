@@ -14,12 +14,9 @@ import {
 import * as THREE from 'three';
 
 export default function Home() {
-  const words = ['👨‍💻 Web Developer', '📱 Mobile Developer', '🧩 Problem Solver'];
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [index, setIndex] = useState(0);
   const [showServices, setShowServices] = useState(false);
   const [showCV, setShowCV] = useState(false);
-  const [showContact, setShowContact] = useState(false); // NOVI STATE ZA KONTAKT MODAL
+  const [showContact, setShowContact] = useState(false);
   const [language, setLanguage] = useState('bs');
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFullyLoaded, setIsFullyLoaded] = useState(false);
@@ -27,28 +24,27 @@ export default function Home() {
   const [toast, setToast] = useState('');
 
   const copyToClipboard = async (text: string, type: string) => {
-  try {
-    await navigator.clipboard.writeText(text);
-    setToast(`${type === 'email' ? '📧' : '📱'} Copied!`);
-  } catch {
-    // Fallback
-    setToast('Press long to copy');
-  }
-  setTimeout(() => setToast(''), 2500);
-};
+    try {
+      await navigator.clipboard.writeText(text);
+      setToast(`${type === 'email' ? '📧' : '📱'} Copied!`);
+    } catch {
+      // Fallback
+      setToast('Press long to copy');
+    }
+    setTimeout(() => setToast(''), 2500);
+  };
 
   // BOSANSKI sadržaj
- const bsContent = {
-  words: ['👨‍💻 Web Developer', '📱 Mobile Developer', '🧩 Problem Solver'],
-  welcome: 'Dobrodošao u moj digitalni svijet 🚀 Ja sam Harun, full-stack developer koji pretvara ideje u moderne web i mobilne aplikacije, gdje se dizajn i funkcionalnost susreću.',
-  servicesBtn: '🚀 Usluge',
-  cvBtn: '📄 Pogledaj CV',
-  servicesTitle: '🌟 Usluge 🌟',
-  contactTitle: '📞 Kontakt',
-  contactBtn: '📞 Kontaktiraj me',
-  email: 'harun.delic01@gmail.com',
-  viber: '+387 61 622 101', // ← TVOJ BROJ!
-  myServices: [
+  const bsContent = {
+    welcome: 'Dobrodošao u moj digitalni svijet 🚀 Ja sam Harun, full-stack developer koji pretvara ideje u moderne web i mobilne aplikacije, gdje se dizajn i funkcionalnost susreću.',
+    servicesBtn: '🚀 Usluge',
+    cvBtn: '📄 Pogledaj CV',
+    servicesTitle: '🌟 Usluge 🌟',
+    contactTitle: '📞 Kontakt',
+    contactBtn: '📞 Kontaktiraj me',
+    email: 'harun.delic01@gmail.com',
+    viber: '+387 61 622 101',
+    myServices: [
       {
         title: 'Izrada Web Stranica',
         description: 'Pravimo moderne web stranice koristeći Next.js, React ili Angular, sa fokusom na dizajn i performanse.',
@@ -88,17 +84,14 @@ export default function Home() {
   };
 
   const enContent = {
-    words: ['👨‍💻 Web Developer', '📱 Mobile Developer', '🧩 Problem Solver'],
     welcome: 'Welcome to my digital world 🚀 I am Harun, a full-stack developer who turns ideas into modern web and mobile applications where design meets functionality.',
     servicesBtn: '🚀 Services',
     cvBtn: '📄 View CV',
     servicesTitle: '🌟 Services 🌟',
-    servicesClose: '❌ Close',
-    cvClose: '❌ Close',
     contactTitle: '📞 Contact Me',
     contactBtn: '📞 Contact Me',
     email: 'harun.delic01@gmail.com',
-    viber: '+387 61 622 101', // OVDJE STAVI SVOJ VIBER BROJ
+    viber: '+387 61 622 101',
     myServices: [
       {
         title: 'Website Development',
@@ -145,20 +138,7 @@ export default function Home() {
   // Toggle jezik
   const toggleLanguage = useCallback(() => {
     setLanguage(prev => prev === 'bs' ? 'en' : 'bs');
-    setIndex(0);
-    setCurrentWord(content.words[0]);
-  }, [content.words]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % content.words.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [content.words]);
-
-  useEffect(() => {
-    setCurrentWord(content.words[index % content.words.length]);
-  }, [index, content.words]);
+  }, []);
 
   // Premium loading effects
   useEffect(() => {
@@ -525,38 +505,44 @@ export default function Home() {
           Harun Delić
         </motion.h1>
 
-        {/* Rotirajuća uloga */}
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={`${currentWord}-${language}`}
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.9 }}
-            transition={{ duration: 0.4 }}
-            className="text-2xl sm:text-3xl text-cyan-300 font-semibold tracking-wide px-4"
-          >
-            {currentWord}
-          </motion.p>
-        </AnimatePresence>
-
-        {/* Glass opis */}
+        {/* TEXT DOBRODOSLICE ISPOD IMENA */}
         <motion.div
           variants={itemVariants}
-          className="mt-6 sm:mt-10 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl px-6 sm:px-12 py-4 sm:py-6 max-w-sm sm:max-w-xl sm:max-w-2xl md:max-w-xl text-gray-300 text-sm sm:text-base leading-relaxed shadow-2xl shadow-cyan-500/10 hover:shadow-cyan-500/20 transition-all duration-500"
+          className="mt-4 sm:mt-6 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl px-6 sm:px-12 py-4 sm:py-6 max-w-sm sm:max-w-xl sm:max-w-2xl md:max-w-xl text-gray-300 text-sm sm:text-base leading-relaxed shadow-2xl shadow-cyan-500/10 hover:shadow-cyan-500/20 transition-all duration-500"
         >
           {content.welcome}
         </motion.div>
 
-        {/* CTA buttons */}
+        {/* KONTAKT BUTTON ISPOD TEXA */}
         <motion.div 
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-6 sm:mt-8 w-full max-w-md sm:max-w-none px-4 justify-center"
+          className="w-full max-w-sm"
+        >
+          <motion.button
+            onClick={() => setShowContact(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="group relative w-full px-6 py-4 rounded-2xl font-semibold text-lg text-white backdrop-blur-xl border border-white/30 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:border-emerald-400/50 transition-all duration-300 bg-white/10 hover:bg-white/20 overflow-hidden"
+          >
+            {/* Subtle Shine */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent w-0 group-hover:w-full transition-all duration-700 ease-out opacity-0 group-hover:opacity-100" />
+            
+            <div className="flex items-center justify-center gap-3 relative z-10">
+              <span className="tracking-wide font-semibold">{content.contactBtn}</span>
+            </div>
+          </motion.button>
+        </motion.div>
+
+        {/* CTA buttons - PORAVNANI */}
+        <motion.div 
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-6 sm:mt-8 w-full max-w-md sm:max-w-lg px-4 justify-center"
         >
           <motion.button
             onClick={() => setShowServices(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 rounded-full border border-transparent text-cyan-300 font-semibold hover:border-cyan-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 w-full sm:w-auto text-sm sm:text-base backdrop-blur-sm bg-white/5 hover:bg-white/10"
+            className="px-8 sm:px-10 py-4 rounded-2xl border border-transparent text-cyan-300 font-semibold hover:border-cyan-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 w-full sm:w-auto text-base sm:text-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 flex-1"
           >
             {content.servicesBtn}
           </motion.button>
@@ -565,7 +551,7 @@ export default function Home() {
             onClick={() => setShowCV(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 rounded-full border border-cyan-400 text-cyan-400 font-semibold flex items-center justify-center gap-2 hover:bg-cyan-500 hover:text-black transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 w-full sm:w-auto text-sm sm:text-base backdrop-blur-sm bg-white/5"
+            className="px-8 sm:px-10 py-4 rounded-2xl border border-cyan-400 text-cyan-400 font-semibold flex items-center justify-center hover:bg-cyan-500 hover:text-black transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 w-full sm:w-auto text-base sm:text-lg backdrop-blur-sm bg-white/5 flex-1"
           >
             {content.cvBtn}
           </motion.button>
@@ -574,7 +560,19 @@ export default function Home() {
 
       {/* MODALI */}
       <AnimatePresence>
-        {/* Services Modal - MOBITEL FULL SCREEN, DESKTOP KAO PRIJE */}
+        {/* TOAST */}
+        {toast && (
+          <motion.div
+            initial={{ y: -60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -60, opacity: 0 }}
+            className="fixed top-6 left-1/2 -translate-x-1/2 z-[70] px-6 py-3 bg-emerald-500/95 backdrop-blur-xl text-white text-lg font-semibold rounded-2xl shadow-2xl border border-emerald-400/50"
+          >
+            {toast}
+          </motion.div>
+        )}
+
+        {/* Services Modal */}
         {showServices && (
           <>
             <motion.div
@@ -593,10 +591,9 @@ export default function Home() {
               transition={{ duration: 0.4 }}
               className="fixed inset-0 z-50 p-4"
             >
-              {/* MOBITEL: FULL SCREEN, DESKTOP: MAX-W + CENTER */}
               <div className="w-full h-[95vh] md:w-full md:max-w-4xl md:mx-auto md:my-auto md:h-auto bg-gray-900/95 backdrop-blur-2xl rounded-2xl md:rounded-3xl max-h-[95vh] overflow-hidden flex flex-col shadow-2xl shadow-cyan-500/20 border border-white/20">
                 
-                {/* Header sa ZATVORI - VIDLJIV SVUDA */}
+                {/* Header */}
                 <div className="p-4 sm:p-6 md:p-8 sm:border-b md:border-b border-white/10 flex items-center justify-between sticky top-0 bg-gray-900/50 backdrop-blur-sm z-10">
                   <h2 className="text-xl sm:text-2xl md:text-3xl md:text-4xl font-bold text-yellow-400 text-center flex-1">
                     {content.servicesTitle}
@@ -611,33 +608,7 @@ export default function Home() {
                   </motion.button>
                 </div>
 
-                {/* NOVI KONTAKT BUTTON - VIDLJIV NA POČETKU */}
-                {/* iPHONE-STYLE SERIOUS PREMIUM BUTTON */}
-<div className="p-6 sm:p-8 border-b border-white/10 bg-white/5/70 dark:bg-gray-900/20 backdrop-blur-xl flex items-center justify-center">
-  <motion.button
-    onClick={() => {
-      setShowContact(true);
-      setShowServices(false);
-    }}
-    whileHover={{ 
-      scale: 1.02, 
-      backgroundColor: "rgba(255,255,255,0.15)",
-      boxShadow: "0 8px 32px rgba(0,0,0,0.15)"
-    }}
-    whileTap={{ scale: 0.98 }}
-    className="group relative w-full max-w-sm px-6 py-4 rounded-2xl font-semibold text-lg text-white backdrop-blur-xl border border-white/30 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:border-emerald-400/50 transition-all duration-300 bg-white/10 hover:bg-white/20 overflow-hidden"
-  >
-    {/* Subtle Shine */}
-    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent w-0 group-hover:w-full transition-all duration-700 ease-out opacity-0 group-hover:opacity-100" />
-    
-    <div className="flex items-center justify-center gap-3 relative z-10">
-      <span className="tracking-wide font-semibold">{content.contactBtn}</span>
-    </div>
-  </motion.button>
-</div>
-
-
-                {/* Services grid - SCROLLABLE */}
+                {/* Services grid - SAMO USLUGE, bez kontakt buttona */}
                 <div className="flex-1 overflow-y-auto p-4 sm:p-6 sm:px-8 md:px-10 pb-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {currentServices.map((service, index) => (
@@ -659,140 +630,125 @@ export default function Home() {
           </>
         )}
 
-        {/* NOVI KONTAKT MODAL */}
-       {/* IPHONE-STYLE CENTERED KONTAKT MODAL */}
-{showContact && (
-  <>
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-      onClick={() => setShowContact(false)}
-    />
-    
-    {/* TOAST */}
-    <AnimatePresence>
-      {toast && (
-        <motion.div
-          initial={{ y: -60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -60, opacity: 0 }}
-          className="fixed top-6 left-1/2 -translate-x-1/2 z-[70] px-6 py-3 bg-emerald-500/95 backdrop-blur-xl text-white text-lg font-semibold rounded-2xl shadow-2xl border border-emerald-400/50"
-        >
-          {toast}
-        </motion.div>
-      )}
-    </AnimatePresence>
-
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none"
-    >
-      <div className="pointer-events-auto w-full max-w-sm mx-auto backdrop-blur-xl bg-white/95 dark:bg-gray-900/95 rounded-3xl shadow-2xl shadow-black/30 border border-white/50 dark:border-gray-800/50 max-h-[85vh] overflow-hidden">
-        
-        {/* Drag Handle */}
-        <div className="flex items-center justify-center py-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-700/50 border-b border-gray-200/50 dark:border-gray-700/50">
-          <div className="w-10 h-1.5 bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-400 rounded-full shadow-sm" />
-        </div>
-
-        {/* Header */}
-        <div className="p-6 pb-4">
-          <div className="flex items-center justify-between mb-2">
-            <div>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-black dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
-                {content.contactTitle}
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
-                Copy ili otvori app
-              </p>
-            </div>
-            <motion.button
+        {/* KONTAKT MODAL - SADA SAMOSTALAN */}
+        {showContact && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
               onClick={() => setShowContact(false)}
-              whileTap={{ scale: 0.95, rotate: 90 }}
-              className="w-11 h-11 rounded-2xl bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none"
             >
-              ✕
-            </motion.button>
-          </div>
-        </div>
-
-        {/* Contact Items - COPY + OPEN */}
-        <div className="divide-y divide-gray-100/50 dark:divide-gray-800/50">
-          
-          {/* EMAIL */}
-          <div className="p-5">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-xl text-white font-semibold">✉️</span>
+              <div className="pointer-events-auto w-full max-w-sm mx-auto backdrop-blur-xl bg-white/95 dark:bg-gray-900/95 rounded-3xl shadow-2xl shadow-black/30 border border-white/50 dark:border-gray-800/50 max-h-[85vh] overflow-hidden">
+                
+                {/* Drag Handle */}
+                <div className="flex items-center justify-center py-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-700/50 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="w-10 h-1.5 bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-400 rounded-full shadow-sm" />
                 </div>
-                <div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-base">Email</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">{content.email}</p>
+
+                {/* Header */}
+                <div className="p-6 pb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div>
+                      <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-black dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
+                        {content.contactTitle}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                        Copy ili otvori app
+                      </p>
+                    </div>
+                    <motion.button
+                      onClick={() => setShowContact(false)}
+                      whileTap={{ scale: 0.95, rotate: 90 }}
+                      className="w-11 h-11 rounded-2xl bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm"
+                    >
+                      ✕
+                    </motion.button>
+                  </div>
+                </div>
+
+                {/* Contact Items */}
+                <div className="divide-y divide-gray-100/50 dark:divide-gray-800/50">
+                  
+                  {/* EMAIL */}
+                  <div className="p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
+                          <span className="text-xl text-white font-semibold">✉️</span>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900 dark:text-white text-base">Email</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">{content.email}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      <motion.button
+                        onClick={() => copyToClipboard(content.email, 'email')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg hover:shadow-emerald-500/50 transition-all duration-200"
+                      >
+                        Copy
+                      </motion.button>
+                      <motion.a
+                        href={`mailto:${content.email}`}
+                        className="w-14 py-3 px-4 rounded-xl bg-gray-500/20 hover:bg-gray-500/40 flex items-center justify-center text-white shadow-md hover:shadow-gray-500/30 transition-all duration-200"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        ↗️
+                      </motion.a>
+                    </div>
+                  </div>
+
+                  {/* VIBER */}
+                  <div className="p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg">
+                          <span className="text-xl text-white font-semibold">📱</span>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900 dark:text-white text-base">Viber</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">{content.viber}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      <motion.button
+                        onClick={() => copyToClipboard(content.viber, 'viber')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg hover:shadow-emerald-500/50 transition-all duration-200"
+                      >
+                        Copy
+                      </motion.button>
+                      <motion.a
+                        href={`viber://chat?number=${content.viber.replace(/\s+/g, '')}`}
+                        className="w-14 py-3 px-4 rounded-xl bg-gray-500/20 hover:bg-gray-500/40 flex items-center justify-center text-white shadow-md hover:shadow-gray-500/30 transition-all duration-200"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        ↗️
+                      </motion.a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="flex gap-2">
-              <motion.button
-                onClick={() => copyToClipboard(content.email, 'email')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg hover:shadow-emerald-500/50 transition-all duration-200"
-              >
-                Copy
-              </motion.button>
-              <motion.a
-                href={`mailto:${content.email}`}
-                className="w-14 py-3 px-4 rounded-xl bg-gray-500/20 hover:bg-gray-500/40 flex items-center justify-center text-white shadow-md hover:shadow-gray-500/30 transition-all duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                ↗️
-              </motion.a>
-            </div>
-          </div>
-
-          {/* VIBER */}
-          <div className="p-5">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-xl text-white font-semibold">📱</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-base">Viber</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">{content.viber}</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex gap-2">
-              <motion.button
-                onClick={() => copyToClipboard(content.viber, 'viber')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg hover:shadow-emerald-500/50 transition-all duration-200"
-              >
-                Copy
-              </motion.button>
-              <motion.a
-                href={`viber://chat?number=${content.viber.replace(/\s+/g, '')}`}
-                className="w-14 py-3 px-4 rounded-xl bg-gray-500/20 hover:bg-gray-500/40 flex items-center justify-center text-white shadow-md hover:shadow-gray-500/30 transition-all duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                ↗️
-              </motion.a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  </>
-)}
+            </motion.div>
+          </>
+        )}
 
         {/* CV Modal */}
         {showCV && (
