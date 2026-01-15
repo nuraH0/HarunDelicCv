@@ -21,11 +21,16 @@
   --font-mono: 'Courier New', monospace;
 }
 
+/* ✅ SCROLL FIKS - DODAJ OVO */
+html, body {
+  overflow-y: auto !important;
+  height: 100%;
+}
+
 /* 4️⃣ Premium font za ime */
-/* Hero sekcija */
 .name-logo {
   font-family: 'Sacramento', cursive;
-  font-size: 4rem; /* ostaje velika za hero */
+  font-size: 4rem;
   color: var(--color-accent-alt);      
   background: linear-gradient(90deg, #38bdf8, #3b82f6);
   -webkit-background-clip: text;
@@ -35,10 +40,9 @@
   display: inline-block;
 }
 
-/* Navigacija - manja verzija */
 .nav-logo {
   font-family: 'Sacramento', cursive;
-  font-size: 1.5rem; /* duplo manja */
+  font-size: 1.5rem;
   color: var(--color-accent-alt);      
   background: linear-gradient(90deg, #38bdf8, #3b82f6);
   -webkit-background-clip: text;
@@ -48,14 +52,13 @@
   display: inline-block;
 }
 
-
-/* 5️⃣ Osnovni body stilovi */
+/* 5️⃣ Osnovni body stilovi - UKLONIO padding: 0 */
 body {
   background: var(--color-bg-dark);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   margin: 0;
-  padding: 0;
+  /* padding: 0; ← UKLONJENO! */
 }
 
 /* Animacije */

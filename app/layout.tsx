@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased **overflow-y-auto min-h-screen**`}>
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
