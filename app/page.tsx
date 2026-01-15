@@ -32,8 +32,8 @@ export default function Home() {
     cvBtn: '📄 Pogledaj CV',
     servicesTitle: '🌟 Usluge 🌟',
     servicesRequest: '✉️ Zatraži uslugu',
-    servicesClose: '❌ Zatvori',
-    cvClose: '❌ Zatvori',
+    servicesClose: '❌ ',
+    cvClose: '❌ ',
     myServices: [
       {
         title: 'Izrada Web Stranica',
@@ -304,7 +304,7 @@ export default function Home() {
   } as const;
 
   return (
-    <div className="relative min-h-screen flex flex-col font-sans text-white **overflow-y-auto** bg-gradient-to-br from-black via-gray-900 to-black">
+    <div className="relative min-h-screen flex flex-col font-sans text-white bg-gradient-to-br from-black via-gray-900 to-black">
       {/* PREMIUM PRELOADER */}
       <AnimatePresence>
         {!isFullyLoaded && (
@@ -398,7 +398,7 @@ export default function Home() {
       {/* Language toggle */}
 
 {isLoaded && (
-  <div className="fixed top-3 right-3 z-[999] p-2">
+  <div className="fixed top-4 right-4 z-[1000] p-2 pointer-events-auto sm:top-3 sm:right-3">
     <div
       className="w-[90px] h-[46px] bg-gray-900/95 backdrop-blur-2xl rounded-2xl p-[4px] shadow-2xl border border-white/30 relative cursor-pointer group hover:shadow-cyan-500/30 overflow-hidden select-none"
       onClick={toggleLanguage}
@@ -440,9 +440,9 @@ export default function Home() {
 )}
 
 
-
       {/* FULLSCREEN Canvas */}
-      <div className={`absolute inset-0 w-full h-screen z-0 pointer-events-none ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
+
+      <div className={`absolute inset-0 w-full h-screen z-10 pointer-events-none ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
         <Canvas 
           camera={{ position: [0, 0, 50], fov: 75 }}
           gl={{ 
@@ -457,9 +457,10 @@ export default function Home() {
         </Canvas>
       </div>
 
+
       {/* MAIN CONTENT */}
-      <motion.main 
-        className={`flex-grow flex flex-col justify-center items-center text-center p-4 sm:p-8 relative z-10 space-y-6 sm:space-y-8 ${showServices || showCV ? 'blur-sm' : ''} transition-all duration-500 ${isFullyLoaded ? 'opacity-100' : 'opacity-0'}`}
+<motion.main 
+  className={`flex-grow flex flex-col justify-center items-center text-center p-4 sm:p-8 relative z-20 space-y-6 sm:space-y-8 ${showServices || showCV ? 'blur-sm' : ''} transition-all duration-500 ${isFullyLoaded ? 'opacity-100' : 'opacity-0'}`}
         variants={containerVariants}
         initial="hidden"
         animate={isFullyLoaded ? "visible" : "hidden"}
@@ -575,61 +576,71 @@ export default function Home() {
       {/* MODALI */}
       <AnimatePresence>
         {/* Services Modal */}
-        {showServices && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="fixed inset-0 bg-black/70 backdrop-blur-md z-40"
-              onClick={() => setShowServices(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4 }}
-              className="fixed inset-0 flex justify-center items-center z-50 p-4 sm:px-6 overflow-auto bg-black/90"
-            >
-              <div className="bg-gray-900 rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 space-y-6 sm:space-y-8 text-white shadow-2xl shadow-cyan-500/20">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 text-center mb-6 sm:mb-8">
-                  {content.servicesTitle}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  {currentServices.map((service, index) => (
-                    <motion.a
-                      key={index}
-                      href={service.emailHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-gray-800 p-4 sm:p-6 rounded-xl sm:rounded-2xl cursor-pointer hover:bg-gray-700 transition-all duration-300 flex flex-col space-y-3 group hover:shadow-2xl hover:shadow-yellow-500/30 hover:-translate-y-2 touch-manipulation backdrop-blur-sm border border-white/10"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400 flex items-center gap-2 group-hover:text-yellow-300 transition-colors">
-                        {service.emoji} {service.title}
-                      </h3>
-                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{service.description}</p>
-                      <span className="mt-auto self-start px-3 sm:px-4 py-2 bg-cyan-500 text-black font-semibold rounded-full text-xs sm:text-sm hover:bg-cyan-600 transition-all duration-300 group-hover:scale-105 shadow-lg">
-                        {content.servicesRequest}
-                      </span>
-                    </motion.a>
-                  ))}
-                </div>
-                <div className="flex justify-center mt-6 sm:mt-8">
-                  <motion.button
-                    onClick={() => setShowServices(false)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 sm:px-8 py-3 bg-red-600 rounded-full font-semibold hover:bg-red-700 transition-all duration-300 shadow-lg hover:shadow-red-500/50 text-sm sm:text-base min-w-[120px]"
-                  >
-                    {content.servicesClose}
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
+    {/* Services Modal - MOBITEL FULL SCREEN, DESKTOP KAO PRIJE */}
+{showServices && (
+  <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+      className="fixed inset-0 bg-black/70 backdrop-blur-md z-40"
+      onClick={() => setShowServices(false)}
+    />
+    
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+      className="fixed inset-0 z-50 p-4"
+    >
+      {/* MOBITEL: FULL SCREEN, DESKTOP: MAX-W + CENTER */}
+      <div className="w-full h-[95vh] md:w-full md:max-w-4xl md:mx-auto md:my-auto md:h-auto bg-gray-900/95 backdrop-blur-2xl rounded-2xl md:rounded-3xl max-h-[95vh] overflow-hidden flex flex-col shadow-2xl shadow-cyan-500/20 border border-white/20">
+        
+        {/* Header sa ZATVORI - VIDLJIV SVUDA */}
+        <div className="p-4 sm:p-6 md:p-8 sm:border-b md:border-b border-white/10 flex items-center justify-between sticky top-0 bg-gray-900/50 backdrop-blur-sm z-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl md:text-4xl font-bold text-yellow-400 text-center flex-1">
+            {content.servicesTitle}
+          </h2>
+          <motion.button
+            onClick={() => setShowServices(false)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="ml-4 p-2 sm:p-3 bg-red-600 hover:bg-red-700 rounded-xl shadow-lg hover:shadow-red-500/50 text-white font-semibold min-w-[44px] h-[44px] flex items-center justify-center text-sm sm:text-base"
+          >
+            {content.servicesClose}
+          </motion.button>
+        </div>
+
+        {/* Services grid - SCROLLABLE */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 sm:px-8 md:px-10 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {currentServices.map((service, index) => (
+              <motion.a
+                key={index}
+                href={service.emailHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800 p-4 sm:p-6 rounded-xl sm:rounded-2xl cursor-pointer hover:bg-gray-700 transition-all duration-300 flex flex-col space-y-3 group hover:shadow-2xl hover:shadow-yellow-500/30 hover:-translate-y-2 backdrop-blur-sm border border-white/10"
+                whileHover={{ scale: 1.02 }}
+              >
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-yellow-400 flex items-center gap-2 group-hover:text-yellow-300">
+                  {service.emoji} {service.title}
+                </h3>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{service.description}</p>
+                <span className="mt-auto self-start px-3 sm:px-4 py-2 bg-cyan-500 text-black font-semibold rounded-full text-xs sm:text-sm hover:bg-cyan-600 transition-all duration-300 group-hover:scale-105 shadow-lg">
+                  {content.servicesRequest}
+                </span>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </>
+)}
+
 
         {/* CV Modal */}
         {showCV && (
