@@ -304,7 +304,7 @@ export default function Home() {
   } as const;
 
   return (
-    <div className="relative min-h-screen flex flex-col font-sans text-white overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+    <div className="relative min-h-screen flex flex-col font-sans text-white **overflow-y-auto** bg-gradient-to-br from-black via-gray-900 to-black">
       {/* PREMIUM PRELOADER */}
       <AnimatePresence>
         {!isFullyLoaded && (
@@ -396,48 +396,49 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Language toggle */}
-{/* Language toggle - NAJVIŠI Z-INDEX! */}
+
 {isLoaded && (
-  <div className="fixed top-4 right-4 z-[999] px-4 pt-4 flex items-start gap-2 pointer-events-auto">
+  <div className="fixed top-3 right-3 z-[999] p-2">
     <div
-      className="w-28 h-14 sm:w-32 sm:h-16 bg-gray-900/95 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 shadow-2xl shadow-black/70 border-2 sm:border-4 border-white/30 backdrop-blur-2xl relative overflow-hidden group hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-400 hover:scale-105 cursor-pointer select-none touch-manipulation"
+      className="w-[90px] h-[46px] bg-gray-900/95 backdrop-blur-2xl rounded-2xl p-[4px] shadow-2xl border border-white/30 relative cursor-pointer group hover:shadow-cyan-500/30 overflow-hidden select-none"
       onClick={toggleLanguage}
     >
+      {/* PUNI KRUG ZASTAVE - SVE SAVRŠENO CENTRIRANO */}
       <motion.div
-        className="absolute top-1/2 -translate-y-1/2 left-1.5 w-12 h-12 sm:w-14 sm:h-14 sm:left-2 rounded-2xl sm:rounded-3xl shadow-2xl sm:shadow-3xl shadow-gray-500/70 backdrop-blur-2xl border-2 sm:border-4 flex items-center justify-center drop-shadow-2xl ring-2 sm:ring-4 ring-white/40 z-[1000]"
+        className="w-[38px] h-[38px] absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-gradient-to-br rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.5)] z-10 border-2 border-white/60 flex items-center justify-center backdrop-blur-xl"
         animate={{
-          background:
-            language === 'bs'
-              ? 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)'
-              : 'linear-gradient(135deg, #fde68a 0%, #eab308 100%)',
-          borderColor: language === 'bs' ? '#1d4ed8' : '#d97706',
-          boxShadow:
-            language === 'bs'
-              ? '0 0 40px rgba(59,130,246,0.9), inset 0 0 20px rgba(255,255,255,0.5)'
-              : '0 0 40px rgba(234,179,8,0.9), inset 0 0 20px rgba(255,255,255,0.5)',
+          translateX: language === 'bs' ? "-22px" : "22px",
+          background: language === 'bs'
+            ? "linear-gradient(135deg, #60a5fa 0%, #3b82f6 70%, #1e3a8a 100%)"
+            : "linear-gradient(135deg, #fbbf24 0%, #f59e0b 70%, #b45309 100%)"
         }}
-        transition={{ type: 'spring', stiffness: 700, damping: 28 }}
-        whileHover={{ scale: 1.1 }}
-        style={{ cursor: 'pointer' }}
+        transition={{
+          translateX: { type: "spring", stiffness: 450, damping: 28 },
+          background: { duration: 0.3 }
+        }}
+        whileHover={{ scale: 1.08, y: -2 }}
+        whileTap={{ scale: 0.96 }}
       >
+        {/* PUNA ZASTAVA - popunjava CEIJI KRUG */}
         <img
           src={language === 'bs' ? '/bosna.png' : '/engleska.png'}
-          alt={language === 'bs' ? 'Bosanski' : 'English'}
-          className={`w-6 h-4 sm:w-8 sm:h-5 rounded-lg shadow-md overflow-hidden border object-cover ${
-            language === 'bs' ? 'border-blue-400/70' : 'border-yellow-400/70'
-          }`}
-          onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+          alt={language === 'bs' ? '🇧🇦' : '🇬🇧'}
+          className="w-full h-full rounded-full object-cover shadow-inner border border-white/80"
+          onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src =
-              language === 'bs'
-                ? 'https://flagcdn.com/24x18/ba.png'
-                : 'https://flagcdn.com/24x18/gb.png';
+            target.src = language === 'bs'
+              ? 'https://flagcdn.com/w40/ba.png'
+              : 'https://flagcdn.com/w40/gb.png';
           }}
         />
       </motion.div>
+      
+      {/* SUBTILNA TRACA */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent/50 to-white/20 h-[2px] top-[50%] -translate-y-1/2 rounded-full" />
     </div>
   </div>
 )}
+
 
 
       {/* FULLSCREEN Canvas */}
