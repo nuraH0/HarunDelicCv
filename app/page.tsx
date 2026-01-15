@@ -397,7 +397,7 @@ export default function Home() {
 
       {/* Language toggle */}
 
-{isLoaded && (
+{isLoaded && !showServices && !showCV && (
   <div className="fixed top-4 right-4 z-[1000] p-2 pointer-events-auto sm:top-3 sm:right-3">
     <div
       className="w-[90px] h-[46px] bg-gray-900/95 backdrop-blur-2xl rounded-2xl p-[4px] shadow-2xl border border-white/30 relative cursor-pointer group hover:shadow-cyan-500/30 overflow-hidden select-none"
