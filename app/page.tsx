@@ -396,14 +396,15 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Language toggle */}
- {isLoaded && (
-  <div className="fixed top-4 right-4 z-[70] px-4 pt-4 flex items-start gap-2">
+{/* Language toggle - NAJVIŠI Z-INDEX! */}
+{isLoaded && (
+  <div className="fixed top-4 right-4 z-[999] px-4 pt-4 flex items-start gap-2 pointer-events-auto">
     <div
       className="w-28 h-14 sm:w-32 sm:h-16 bg-gray-900/95 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 shadow-2xl shadow-black/70 border-2 sm:border-4 border-white/30 backdrop-blur-2xl relative overflow-hidden group hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-400 hover:scale-105 cursor-pointer select-none touch-manipulation"
       onClick={toggleLanguage}
     >
       <motion.div
-        className="absolute top-1/2 -translate-y-1/2 left-1.5 w-12 h-12 sm:w-14 sm:h-14 sm:left-2 rounded-2xl sm:rounded-3xl shadow-2xl sm:shadow-3xl shadow-gray-500/70 backdrop-blur-2xl border-2 sm:border-4 flex items-center justify-center drop-shadow-2xl ring-2 sm:ring-4 ring-white/40 z-10"
+        className="absolute top-1/2 -translate-y-1/2 left-1.5 w-12 h-12 sm:w-14 sm:h-14 sm:left-2 rounded-2xl sm:rounded-3xl shadow-2xl sm:shadow-3xl shadow-gray-500/70 backdrop-blur-2xl border-2 sm:border-4 flex items-center justify-center drop-shadow-2xl ring-2 sm:ring-4 ring-white/40 z-[1000]"
         animate={{
           background:
             language === 'bs'
@@ -437,6 +438,7 @@ export default function Home() {
     </div>
   </div>
 )}
+
 
       {/* FULLSCREEN Canvas */}
       <div className={`absolute inset-0 w-full h-screen z-0 pointer-events-none ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
