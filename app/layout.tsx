@@ -40,8 +40,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased **overflow-y-auto min-h-screen**`}>
+    <html lang="bs" className="!scroll-smooth">
+      <head>
+        {/* IPHONE EDGE-TO-EDGE FULLSCREEN */}
+        <meta 
+          name="viewport" 
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" 
+        />
+        {/* PWA Fullscreen iPhone */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Harun Portfolio" />
+        {/* Android PWA */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#0f172a" />
+        {/* Touch icons */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-dvh w-dvh bg-gradient-to-br from-slate-900 via-black to-slate-950/90 text-white`}>
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
