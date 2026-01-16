@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     default: "Harun Delić | Full-Stack Developer",
     template: "%s | Harun Delić",
   },
-  description: "Harun Delić - Full-Stack Developer iz Sarajeva. Next.js portfolio sa projektima, vještinama i kontaktom.",
-  keywords: ["Harun Delić", "full-stack developer", "Next.js", "Sarajevo", "portfolio"],
+  description: "Harun Delić - Full-Stack Developer.",
+  keywords: ["Harun Delić", "full-stack developer", "portfolio"],
   openGraph: {
     title: "Harun Delić | Full-Stack Developer",
-    description: "Next.js portfolio Harun Delić - Full-Stack Developer iz Sarajeva.",
+    description: "Harun Delić - Full-Stack Developer.",
     url: "https://www.harundelic.org",
     siteName: "Harun Delić Portfolio",
     images: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Harun Delić | Full-Stack Developer",
-    description: "Next.js portfolio Harun Delić - Full-Stack Developer.",
+    description: "Harun Delić - Full-Stack Developer.",
     images: ["/og-image.jpg"],
   },
   robots: {
