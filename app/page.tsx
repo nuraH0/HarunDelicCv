@@ -451,19 +451,19 @@ export default function Home() {
 
           {/* Profile image - perfect iPhone size */}
           <motion.div
-            variants={profileVariants}
-            className="absolute inset-0 flex items-center justify-center w-28 h-28 rounded-3xl overflow-hidden border-4 border-emerald-400/50 shadow-2xl shadow-emerald-500/30 z-20"
-          >
-            <motion.img
-              src="/slikamoja.jpg"
-              alt="Harun Delić"
-              className="w-full h-full object-cover scale-[1.08] hover:scale-100 transition-all duration-500 ease-out"
-              loading="lazy"
-              initial={{ filter: 'blur(15px)' }}
-              animate={{ filter: 'blur(0px)' }}
-              transition={{ duration: 1.2, delay: 1.5 }}
-            />
-          </motion.div>
+  variants={profileVariants}
+  className="absolute inset-0 flex items-center justify-center w-28 h-28 rounded-full overflow-hidden border-4 border-emerald-400/50 shadow-2xl shadow-emerald-500/30 z-20"
+>
+  <motion.img
+    src="/slikamoja.jpg"
+    alt="Harun Delić"
+    className="w-full h-full **rounded-full** object-cover scale-[1.08] hover:scale-100 transition-all duration-500 ease-out"
+    loading="lazy"
+    initial={{ filter: 'blur(15px)' }}
+    animate={{ filter: 'blur(0px)' }}
+    transition={{ duration: 1.2, delay: 1.5 }}
+  />
+</motion.div>
         </motion.div>
 
         {/* Name - iPhone typography */}
@@ -580,9 +580,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SCROLL SA HIDDEN SCROLLBAROM - MOBILE FRIENDLY */}
-          <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide overscroll-contain px-6 pb-12 pt-6 sm:pt-8 snap-y snap-mandatory">
-            <div className="space-y-6">
+          {/* SMANJENE KOCKICE + HIDDEN SCROLLBAR */}
+          <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide overscroll-contain px-6 pb-12 pt-6 sm:pt-8">
+            <div className="space-y-5">
               {currentServices.map((service, index) => (
                 <motion.div
                   key={index}
@@ -601,18 +601,18 @@ export default function Home() {
                     delay: index * 0.1,
                     ease: "easeOut"
                   }}
-                  className="group p-7 rounded-2xl bg-slate-800/50 border border-blue-900/30 hover:border-blue-700/60 hover:bg-slate-800/80 hover:shadow-xl hover:shadow-blue-900/40 transition-all duration-300 cursor-default backdrop-blur-sm min-h-[140px] snap-center"
+                  className="group p-5 **sm:p-6** rounded-xl bg-slate-800/50 border border-blue-900/30 hover:border-blue-700/60 hover:bg-slate-800/80 hover:shadow-xl hover:shadow-blue-900/40 transition-all duration-300 cursor-default backdrop-blur-sm **min-h-[110px] sm:min-h-[120px]**"
                   whileHover={{ scale: 1.02, y: -2 }}
                 >
-                  <div className="flex items-start gap-5">
-                    <div className="w-16 h-16 bg-blue-900/50 rounded-2xl flex items-center justify-center border border-blue-700/50 shrink-0 mt-1 group-hover:bg-blue-800/70 group-hover:border-blue-600/70 flex-shrink-0">
-                      <span className="text-3xl">{service.emoji}</span>
+                  <div className="flex items-start gap-4">
+                    <div className="**w-12 h-12 sm:w-14 sm:h-14** bg-blue-900/50 rounded-xl flex items-center justify-center border border-blue-700/50 shrink-0 **group-hover:bg-blue-800/70 group-hover:border-blue-600/70 flex-shrink-0">
+                      <span className="**text-2xl sm:text-3xl**">{service.emoji}</span>
                     </div>
                     <div className="flex-1 min-w-0 pt-1">
-                      <h3 className="font-semibold text-slate-200 text-xl tracking-tight mb-3 group-hover:text-blue-300">
+                      <h3 className="font-semibold text-slate-200 **text-lg sm:text-xl** tracking-tight mb-2 **sm:mb-3** group-hover:text-blue-300">
                         {service.title}
                       </h3>
-                      <p className="text-base text-slate-400 leading-relaxed group-hover:text-slate-300">
+                      <p className="text-sm **sm:text-base** text-slate-400 leading-relaxed group-hover:text-slate-300">
                         {service.description}
                       </p>
                     </div>
@@ -626,7 +626,6 @@ export default function Home() {
     </motion.div>
   </>
 )}
-
 
 
         {/* MAX IPHONE-STYLE KONTAKT - CENTERED + MINIMAL */}
