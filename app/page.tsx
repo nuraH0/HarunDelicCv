@@ -561,12 +561,12 @@ export default function Home() {
       className="fixed inset-0 z-50 flex flex-col"
     >
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="w-full max-w-4xl mx-auto backdrop-blur-3xl bg-gradient-to-b from-slate-900/95 to-slate-950/95 border border-blue-900/40 shadow-2xl shadow-blue-900/30 rounded-3xl max-h-full overflow-hidden flex flex-col">
+        <div className="w-full max-w-4xl mx-auto backdrop-blur-3xl bg-gradient-to-b from-slate-900/95 to-slate-950/95 border border-blue-900/40 shadow-2xl shadow-blue-900/30 rounded-3xl max-h-[90vh] flex flex-col overflow-hidden">
           
           {/* Sticky Header */}
-          <div className="px-6 py-6 border-b border-blue-900/30 sticky top-0 bg-slate-900/50 backdrop-blur-sm z-10">
+          <div className="px-6 py-6 border-b border-blue-900/30 sticky top-0 bg-slate-900/50 backdrop-blur-sm z-10 shrink-0">
             <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-semibold text-blue-300 tracking-tight flex-1 text-center">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-blue-300 tracking-tight flex-1 text-center">
                 {content.servicesTitle}
               </h2>
               <motion.button
@@ -580,8 +580,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* STAGGER ANIMATION - ODOZGORE PREMA DOLE */}
-          <div className="flex-1 overflow-y-auto scrollbar-hide px-6 pb-12 pt-6 sm:pt-8">
+          {/* SCROLL SA HIDDEN SCROLLBAROM - MOBILE FRIENDLY */}
+          <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide overscroll-contain px-6 pb-12 pt-6 sm:pt-8 snap-y snap-mandatory">
             <div className="space-y-6">
               {currentServices.map((service, index) => (
                 <motion.div
@@ -601,7 +601,7 @@ export default function Home() {
                     delay: index * 0.1,
                     ease: "easeOut"
                   }}
-                  className="group p-7 rounded-2xl bg-slate-800/50 border border-blue-900/30 hover:border-blue-700/60 hover:bg-slate-800/80 hover:shadow-xl hover:shadow-blue-900/40 transition-all duration-300 cursor-default backdrop-blur-sm min-h-[120px]"
+                  className="group p-7 rounded-2xl bg-slate-800/50 border border-blue-900/30 hover:border-blue-700/60 hover:bg-slate-800/80 hover:shadow-xl hover:shadow-blue-900/40 transition-all duration-300 cursor-default backdrop-blur-sm min-h-[140px] snap-center"
                   whileHover={{ scale: 1.02, y: -2 }}
                 >
                   <div className="flex items-start gap-5">
@@ -612,7 +612,7 @@ export default function Home() {
                       <h3 className="font-semibold text-slate-200 text-xl tracking-tight mb-3 group-hover:text-blue-300">
                         {service.title}
                       </h3>
-                      <p className="text-base text-slate-400 leading-relaxed group-hover:text-slate-300 line-clamp-3">
+                      <p className="text-base text-slate-400 leading-relaxed group-hover:text-slate-300">
                         {service.description}
                       </p>
                     </div>
@@ -626,6 +626,7 @@ export default function Home() {
     </motion.div>
   </>
 )}
+
 
 
         {/* MAX IPHONE-STYLE KONTAKT - CENTERED + MINIMAL */}
