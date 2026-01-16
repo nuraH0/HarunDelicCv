@@ -1,22 +1,34 @@
-import type { Metadata } from 'next';  // ✅ Dodaj ili provjeri ovo
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { ClientProviders } from "./ClientProviders";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.harundelic.com"),  // ✅ Zamijeni ovdje
+  metadataBase: new URL("https://www.harundelic.org"),
   title: {
     default: "Harun Delić | Full-Stack Developer",
     template: "%s | Harun Delić",
   },
-  description: "Harun Delić - Full-Stack Developer iz Sarajeva. Next.js, React, portfolio projekti i kontakt.",  // ✅ Bolji za SEO
-  keywords: ["Harun Delić", "full-stack developer", "Next.js", "Sarajevo", "portfolio"],  // ✅ Dodaj
+  description: "Harun Delić - Full-Stack Developer iz Sarajeva. Next.js portfolio sa projektima, vještinama i kontaktom.",
+  keywords: ["Harun Delić", "full-stack developer", "Next.js", "Sarajevo", "portfolio"],
   openGraph: {
     title: "Harun Delić | Full-Stack Developer",
-    description: "Harun Delić - Full-Stack Developer iz Sarajeva. Next.js portfolio.",
-    url: "https://www.harundelic.com",  // ✅ Zamijeni
+    description: "Next.js portfolio Harun Delić - Full-Stack Developer iz Sarajeva.",
+    url: "https://www.harundelic.org",
     siteName: "Harun Delić Portfolio",
     images: [
       {
-        url: "/og-image.jpg",  // ✅ Dodaj hero screenshot 1200x630px u public/
+        url: "/og-image.jpg",  // Dodaj 1200x630px screenshot u /public/
         width: 1200,
         height: 630,
         alt: "Harun Delić Portfolio",
@@ -28,21 +40,25 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Harun Delić | Full-Stack Developer",
-    description: "Harun Delić - Full-Stack Developer iz Sarajeva.",
-    images: "/og-image.jpg",  // ✅ Isto kao OG
+    description: "Next.js portfolio Harun Delić - Full-Stack Developer.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "google-site-verification-code-if-you-have",  // Opcionalno
   },
 };
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="bs">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-auto min-h-screen`}>
+        <ClientProviders>{children}</ClientProviders>
+      </body>
+    </html>
+  );
+}
