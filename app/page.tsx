@@ -36,11 +36,11 @@ export default function Home() {
   // BOSANSKI sadržaj
   const bsContent = {
     welcome: 'Dobrodošao u moj digitalni svijet 🚀 Ja sam Harun, full-stack developer koji pretvara ideje u moderne web i mobilne aplikacije, gdje se dizajn i funkcionalnost susreću.',
-    servicesBtn: '🚀 Usluge',
-    cvBtn: '📄 Pogledaj CV',
+    servicesBtn: ' Usluge',
+    cvBtn: 'Pogledaj CV',
     servicesTitle: '🌟 Usluge 🌟',
     contactTitle: '📞 Kontakt',
-    contactBtn: '📞 Kontaktiraj me',
+    contactBtn: ' Kontaktiraj me',
     email: 'harun.delic01@gmail.com',
     viber: '+387 61 622 101',
     myServices: [
@@ -84,11 +84,11 @@ export default function Home() {
 
   const enContent = {
     welcome: 'Welcome to my digital world 🚀 I am Harun, a full-stack developer who turns ideas into modern web and mobile applications where design meets functionality.',
-    servicesBtn: '🚀 Services',
-    cvBtn: '📄 View CV',
+    servicesBtn: 'Services',
+    cvBtn: ' View CV',
     servicesTitle: '🌟 Services 🌟',
     contactTitle: '📞 Contact Me',
-    contactBtn: '📞 Contact Me',
+    contactBtn: 'Contact Me',
     email: 'harun.delic01@gmail.com',
     viber: '+387 61 622 101',
     myServices: [
@@ -451,8 +451,9 @@ export default function Home() {
 
           {/* Profile image - perfect iPhone size */}
           <motion.div
-  variants={profileVariants}
-  className="absolute inset-0 flex items-center justify-center w-28 h-28 rounded-full overflow-hidden border-4 border-emerald-400/50 shadow-2xl shadow-emerald-500/30 z-20"
+variants={profileVariants}
+className="absolute inset-0 flex items-center justify-center w-28 h-28 rounded-full overflow-hidden border-4 border-blue-400/50 shadow-2xl shadow-blue-500/30 z-20"
+
 >
   <motion.img
     src="/slikamoja.jpg"
@@ -468,12 +469,15 @@ export default function Home() {
 
         {/* Name - iPhone typography */}
         <motion.h1
-          variants={itemVariants}
-          className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 px-2 tracking-tight"
-          style={{ fontFamily: '"SFProDisplay", -apple-system, sans-serif' }}
-        >
-          Harun Delić
-        </motion.h1>
+        variants={itemVariants}
+        className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 px-2 tracking-tight"
+        style={{ fontFamily: '"SFProDisplay", -apple-system, sans-serif' }}
+      >
+        Harun Delić
+      </motion.h1>
+
+
+
 
         {/* Welcome text - iPhone card style */}
         <motion.div
@@ -485,50 +489,50 @@ export default function Home() {
 
         {/* Main Contact Button - iPhone prominent */}
         <motion.div
-          variants={itemVariants}
-          className="w-full max-w-xs"
-        >
-          <motion.button
-            onClick={() => setShowContact(true)}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative w-full px-6 py-4 rounded-2xl font-semibold text-base text-white backdrop-blur-xl border-2 border-emerald-400/50 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/40 hover:border-emerald-400/80 transition-all duration-300 bg-gradient-to-r from-emerald-500/20 via-cyan-500/10 to-blue-500/20 hover:from-emerald-500/30 overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent w-0 h-full group-hover:w-full transition-all duration-700 ease-out opacity-0 group-hover:opacity-100" />
-            <div className="flex items-center justify-center gap-2 relative z-10">
-              <span>{content.contactBtn}</span>
-            </div>
-          </motion.button>
-        </motion.div>
+  variants={itemVariants}
+  className="w-full max-w-xs px-2"
+>
+  <motion.button
+    onClick={() => setShowContact(true)}
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.98 }}
+    className="w-full py-4 px-6 rounded-2xl border-2 border-blue-400/50 text-blue-300 font-semibold hover:border-blue-400/60 hover:text-blue-200 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 backdrop-blur-md bg-white/5 hover:bg-white/10 text-sm flex items-center justify-center"
+  >
+    {content.contactBtn}
+  </motion.button>
+</motion.div>
+
 
         {/* CTA Buttons - Perfect iPhone spacing */}
         <motion.div
           variants={itemVariants}
           className="flex flex-col gap-3 w-full max-w-xs px-2"
         >
-          <motion.button
-            onClick={() => setShowServices(true)}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full py-4 px-6 rounded-2xl border-2 border-emerald-400/30 text-emerald-300 font-semibold hover:border-emerald-400/60 hover:text-emerald-200 transition-all duration-300 shadow-lg hover:shadow-emerald-500/30 backdrop-blur-md bg-white/5 hover:bg-white/10 text-sm"
-          >
-            {content.servicesBtn}
-          </motion.button>
+  <motion.button
+  onClick={() => setShowServices(true)}
+  whileHover={{ scale: 1.03 }}
+  whileTap={{ scale: 0.98 }}
+  className="w-full py-4 px-6 rounded-2xl border-2 border-blue-400/50 text-blue-300 font-semibold hover:border-blue-400/60 hover:text-blue-200 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 backdrop-blur-md bg-white/5 hover:bg-white/10 text-sm"
+>
+  {content.servicesBtn}
+</motion.button>
+
+
 
           <motion.button
-            onClick={() => setShowCV(true)}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full py-4 px-6 rounded-2xl border-2 border-cyan-400/60 text-cyan-300 font-semibold hover:border-cyan-400 hover:text-cyan-200 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 backdrop-blur-md bg-white/5 hover:bg-white/10 text-sm flex items-center justify-center"
-          >
-            {content.cvBtn}
-          </motion.button>
+  onClick={() => setShowCV(true)}
+  whileHover={{ scale: 1.03 }}
+  whileTap={{ scale: 0.98 }}
+  className="w-full py-4 px-6 rounded-2xl border-2 border-blue-400/60 text-blue-300 font-semibold hover:border-blue-400 hover:text-blue-200 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 backdrop-blur-md bg-white/5 hover:bg-white/10 text-sm flex items-center justify-center"
+>
+  {content.cvBtn}
+</motion.button>
+
         </motion.div>
       </motion.main>
 
       {/* MODALS - IPHONE OPTIMIZED */}
       <AnimatePresence>
-        {/* TOAST - iPhone style */}
         {toast && (
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -541,7 +545,7 @@ export default function Home() {
         )}
 
         {/* Services Modal - iPhone Sheet Style */}
-        {/* STAGGERED CARDS - ODOZGORE PREMA DOLE */}
+
 {showServices && (
   <>
     <motion.div
