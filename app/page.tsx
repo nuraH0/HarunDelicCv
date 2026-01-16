@@ -414,11 +414,11 @@ export default function Home() {
 
       {/* IPHONE-OPTIMIZED MAIN CONTENT */}
       <motion.main
-  className={`h-screen flex flex-col justify-center items-center text-center px-5 py-12 relative z-20 space-y-6 max-w-md lg:max-w-lg xl:max-w-2xl mx-auto ${showServices || showCV || showContact ? 'blur-sm' : ''} transition-all duration-500 ${isFullyLoaded ? 'opacity-100' : 'opacity-0'} overflow-hidden`}
-  variants={containerVariants}
-  initial="hidden"
-  animate={isFullyLoaded ? "visible" : "hidden"}
->
+        className={`h-screen flex flex-col justify-center items-center text-center px-5 py-12 relative z-20 space-y-6 ${showServices || showCV || showContact ? 'blur-sm' : ''} transition-all duration-500 ${isFullyLoaded ? 'opacity-100' : 'opacity-0'} overflow-hidden`}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isFullyLoaded ? "visible" : "hidden"}
+      >
         {/* Perfect iPhone-sized profile */}
         <motion.div
           className="relative w-28 h-28"
@@ -451,19 +451,19 @@ export default function Home() {
 
           {/* Profile image - perfect iPhone size */}
           <motion.div
-  variants={profileVariants}
-  className="absolute inset-0 flex items-center justify-center w-28 h-28 rounded-full overflow-hidden border-4 border-emerald-400/50 shadow-2xl shadow-emerald-500/30 z-20"
->
-  <motion.img
-    src="/slikamoja.jpg"
-    alt="Harun Delić"
-    className="w-full h-full aspect-square object-cover scale-[1.08] hover:scale-100 transition-all duration-500 ease-out"
-    loading="lazy"
-    initial={{ filter: 'blur(15px)' }}
-    animate={{ filter: 'blur(0px)' }}
-    transition={{ duration: 1.2, delay: 1.5 }}
-  />
-</motion.div>
+            variants={profileVariants}
+            className="absolute inset-0 flex items-center justify-center w-28 h-28 rounded-3xl overflow-hidden border-4 border-emerald-400/50 shadow-2xl shadow-emerald-500/30 z-20"
+          >
+            <motion.img
+              src="/slikamoja.jpg"
+              alt="Harun Delić"
+              className="w-full h-full object-cover scale-[1.08] hover:scale-100 transition-all duration-500 ease-out"
+              loading="lazy"
+              initial={{ filter: 'blur(15px)' }}
+              animate={{ filter: 'blur(0px)' }}
+              transition={{ duration: 1.2, delay: 1.5 }}
+            />
+          </motion.div>
         </motion.div>
 
         {/* Name - iPhone typography */}
@@ -745,7 +745,6 @@ export default function Home() {
 
 
     {/* PERFECT MOBILE CV MODAL - IPHONE OPTIMIZED */}
-{/* CV MODAL - SA EDGE SWIPE SUPPORTOM */}
 {showCV && (
   <>
     <motion.div
@@ -766,7 +765,7 @@ export default function Home() {
     >
       <div className="relative pointer-events-auto w-full max-w-2xl max-h-[90vh] backdrop-blur-3xl bg-gradient-to-b from-slate-900/95 to-slate-950/95 border border-blue-900/40 shadow-2xl shadow-blue-900/40 rounded-3xl overflow-hidden">
         
-        {/* Close Button */}
+        {/* Close Button - iPhone Style */}
         <motion.button
           onClick={() => setShowCV(false)}
           whileHover={{ scale: 1.05 }}
@@ -781,7 +780,7 @@ export default function Home() {
           <div className="w-12 h-1.5 bg-blue-500/70 rounded-full shadow-sm" />
         </div>
 
-        {/* CV Image */}
+        {/* Responsive CV Image */}
         <div className="pt-12 px-4 pb-8 max-h-[90vh] flex items-center justify-center">
           <img
             src="/cvslika.png"
@@ -791,42 +790,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Bottom Fade */}
+        {/* Bottom Shadow Gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-950/95 to-transparent pointer-events-none" />
       </div>
     </motion.div>
-  </>
-)}
-
-{/* IPHONE EDGE SWIPE - ZA SVE MODALE */}
-{(showServices || showContact || showCV) && (
-  <>
-    <div 
-      className="fixed left-0 top-[20%] bottom-[20%] w-28 z-[9999] pointer-events-auto bg-transparent"
-      onTouchStartCapture={(e) => {
-        const touch = e.touches[0];
-        if (touch.clientX < 50) {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowServices(false);
-          setShowContact(false);
-          setShowCV(false);
-        }
-      }}
-    />
-    <div 
-      className="fixed right-0 top-[20%] bottom-[20%] w-28 z-[9999] pointer-events-auto bg-transparent"
-      onTouchStartCapture={(e) => {
-        const touch = e.touches[0];
-        if (touch.clientX > window.innerWidth - 50) {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowServices(false);
-          setShowContact(false);
-          setShowCV(false);
-        }
-      }}
-    />
   </>
 )}
       </AnimatePresence>
